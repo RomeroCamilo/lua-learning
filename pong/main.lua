@@ -13,7 +13,8 @@
 -- ─────────────────────────────────────────────────────────────
 local PADDLE_WIDTH  = 15
 local PADDLE_HEIGHT = 100
-local PADDLE_SPEED  = 400  -- pixels per second
+local PADDLE_SPEED  = 400   -- pixels per second
+local BALL_SPEEDUP  = 1.08  -- ball gets 8% faster on every paddle hit
 
 local leftPaddle, rightPaddle, ball
 local leftScore, rightScore
@@ -81,7 +82,8 @@ function love.update(dt)
        ball.x + ball.size > leftPaddle.x and
        ball.y < leftPaddle.y + PADDLE_HEIGHT and
        ball.y + ball.size > leftPaddle.y then
-        ball.dx = -ball.dx
+        ball.dx = -ball.dx * BALL_SPEEDUP
+        ball.dy = ball.dy * BALL_SPEEDUP
     end
 
     -- Bounce off the RIGHT paddle (same check, against rightPaddle)
@@ -89,7 +91,8 @@ function love.update(dt)
        ball.x + ball.size > rightPaddle.x and
        ball.y < rightPaddle.y + PADDLE_HEIGHT and
        ball.y + ball.size > rightPaddle.y then
-        ball.dx = -ball.dx
+        ball.dx = -ball.dx * BALL_SPEEDUP
+        ball.dy = ball.dy * BALL_SPEEDUP
     end
 
     -- Scoring: ball goes off left edge → right player scores
