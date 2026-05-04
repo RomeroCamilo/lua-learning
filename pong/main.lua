@@ -33,6 +33,7 @@ end
 function love.load()
     love.window.setTitle("Pong")
     love.window.setMode(800, 600)
+    love.graphics.setBackgroundColor(0.87, 0.19, 0.39)  -- cherry red
 
     leftPaddle  = { x = 30,                              y = 250 }
     rightPaddle = { x = 800 - 30 - PADDLE_WIDTH,         y = 250 }
